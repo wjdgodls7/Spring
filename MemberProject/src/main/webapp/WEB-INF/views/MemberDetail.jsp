@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<form action="memberLogin" method="post">
-아이디 : <input type="text" name="mid"><br>
-비밀번호 : <input type="password" name="mpwd">
-<input type ="submit" value="로그인">
-</form>
+	${member.getMid()} ${member.getMpwd()} ${member.getMname()} ${member.getMphone()} ${member.getMemail()} ${member.getMbirth()}
+	
 </body>
 </html>

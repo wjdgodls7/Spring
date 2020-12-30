@@ -4,8 +4,24 @@
  
  <mapper namespace="Member"> 
 	<insert id="insertDB" parameterType="member">
-	INSERT INTO TESTTABLE(COL1,COL2,COL3,COL4,COL5,COL6) VALUES(#{mid},#{mpassword},#{mname},#{mphone},#{memail},#{mbirth})
+	INSERT INTO SMEMBER VALUES(#{mid},#{mpwd},#{mname},#{mphone},#{memail},#{mbirth})
 	</insert>
-	
+	<select id="selectDB" parameterType="member" resultType="int">
+	SELECT COUNT(*) FROM SMEMBER WHERE MID=#{mid} AND MPWD=#{mpwd}
+	</select>
+	<select id="selectList" parameterType="member" resultType="member">
+	SELECT * FROM SMEMBER
+	</select>
+	<select id="selectDetail" parameterType="String" resultType="member">
+	SELECT * FROM SMEMBER WHERE MID=#{detail}
+	</select>
+	<delete id="del" parameterType="String">
+	DELETE FROM SMEMBER WHERE MID=#{del}
+	</delete>
+	<select id="select" parameterType="String" resultType="member">
+	SELECT * FROM SMEMBER WHERE MID=#{detail}
+	</select>
+	<update id="update">
+	UPDATE SMEMBER SET MPWD=#{mpwd},MNAME=#{mname},MPHONE=#{mphone},MEMAIL=#{memail},MBIRTH=#{mbirth} WHERE MID=#{mid}
+	</update>
  </mapper>
- 
