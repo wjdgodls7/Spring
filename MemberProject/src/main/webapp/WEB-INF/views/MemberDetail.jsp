@@ -8,6 +8,5 @@
 </head>
 <body>
 	${member.getMid()} ${member.getMpwd()} ${member.getMname()} ${member.getMphone()} ${member.getMemail()} ${member.getMbirth()}
-	
 </body>
 </html>

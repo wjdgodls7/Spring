@@ -2,6 +2,7 @@ package com.icia.member;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.icia.member.dto.MemberDTO;
@@ -21,6 +23,8 @@ public class HomeController {
 	ModelAndView mav;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private HttpSession session;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -65,5 +69,21 @@ public class HomeController {
 		System.out.println(dto.getMid());
 		mav = memberService.MemberUpdate(dto);
 		return mav;
+	}
+	@RequestMapping(value="/memberlogout")
+	public String memberlogout() {
+		session.invalidate();
+		return "home";
+	}
+	@RequestMapping(value="/idoverlap")
+	public @ResponseBody String idOverlap(@RequestParam("mid") String mid) {
+		System.out.println("mid : " + mid);
+		String result = memberService.idOverlap(mid);		
+		return result;
+	}
+	@RequestMapping(value="/memberviewajax")
+	public @ResponseBody MemberDTO memberViewAjax(@RequestParam("mid") String mid) {
+		MemberDTO member = memberService.memberViewAjax(mid);
+		return member;
 	}
 }

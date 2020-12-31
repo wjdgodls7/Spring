@@ -77,6 +77,7 @@ public class MemberService {
 		mav.addObject("detail", dto);
 		mav.setViewName("MemberUpdate");
 		return mav;
+		
 	}
 
 	public ModelAndView MemberUpdate(MemberDTO dto) {
@@ -87,5 +88,20 @@ public class MemberService {
 			mav.setViewName("MemberLogin");
 		}
 		return mav;
+	}
+
+	public String idOverlap(String mid) {
+		String result = memberdao.idOverlap(mid);
+		if (result == null) {
+			result = "ok";
+		}else {
+			result = "no";
+		}
+		return result;
+	}
+
+	public MemberDTO memberViewAjax(String mid) {
+		MemberDTO member = memberdao.Detail(mid);
+		return member;
 	}
 }

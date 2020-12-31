@@ -24,4 +24,7 @@
 	<update id="update">
 	UPDATE SMEMBER SET MPWD=#{mpwd},MNAME=#{mname},MPHONE=#{mphone},MEMAIL=#{memail},MBIRTH=#{mbirth} WHERE MID=#{mid}
 	</update>
+	<select id="idOverlap" parameterType="String" resultType="String">
+	SELECT MID FROM SMEMBER WHERE MID=#{mid}
+	</select>
  </mapper>

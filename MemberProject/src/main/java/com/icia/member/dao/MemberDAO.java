@@ -41,5 +41,8 @@ public class MemberDAO {
 	public int MemberUpdate(MemberDTO dto) {
 		return sql.update("Member.update", dto);
 	}
+	public String idOverlap(String mid) {
+		return sql.selectOne("Member.idOverlap", mid);
+	}
 
 }
