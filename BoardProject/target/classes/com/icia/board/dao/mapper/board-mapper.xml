@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="Board"> 
+	<insert id="boardwrite" parameterType="board">
+	INSERT INTO BOARDTABLE VALUES(DANNUM.NEXTVAL,#{bwriter},#{bpwd},#{btitle},#{bcontents},SYSDATE,0)
+	</insert>
+	<select id="boardList" parameterType="board" resultType="board">
+	SELECT * FROM BOARDTABLE
+	</select>
+	<update id="boarddetail" parameterType="int">
+	UPDATE BOARDTABLE SET BHITS=BHITS+1 WHERE BNUM=#{bnum}
+	<selectKey keyProperty="bnum,bwriter,bpwd,btitle,bcontents,bdate,bhits" resultType="board" order="AFTER">
+	SELECT * FROM BOARDTABLE WHERE BNUM=#{bnum}
+	</selectKey>
+	</update>
+ </mapper>
