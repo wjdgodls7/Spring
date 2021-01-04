@@ -4,15 +4,29 @@
  
  <mapper namespace="Board"> 
 	<insert id="boardwrite" parameterType="board">
-	INSERT INTO BOARDTABLE VALUES(DANNUM.NEXTVAL,#{bwriter},#{bpwd},#{btitle},#{bcontents},SYSDATE,0)
+	INSERT INTO BOARDTABLE VALUES(DANNUM.NEXTVAL,#{bwriter},#{bpwd},#{btitle},#{bcontents},SYSDATE,0,#{bfilename})
 	</insert>
 	<select id="boardList" parameterType="board" resultType="board">
 	SELECT * FROM BOARDTABLE
 	</select>
 	<update id="boarddetail" parameterType="int">
 	UPDATE BOARDTABLE SET BHITS=BHITS+1 WHERE BNUM=#{bnum}
-	<selectKey keyProperty="bnum,bwriter,bpwd,btitle,bcontents,bdate,bhits" resultType="board" order="AFTER">
+	<selectKey keyProperty="bnum,bwriter,bpwd,btitle,bcontents,bdate,bhits,bfilename" resultType="board" order="AFTER">
 	SELECT * FROM BOARDTABLE WHERE BNUM=#{bnum}
 	</selectKey>
 	</update>
+	<delete id="boarddelete">
+	DELETE FROM BOARDTABLE WHERE BNUM=#{bnum}
+	</delete>
+	<update id="boardupdateform" parameterType="board">
+	UPDATE BOARDTABLE SET BCONTENTS=#{bcontents} WHERE BNUM=#{bnum}
+	</update>
+	<select id="boardlist" resultType="int">
+	SELECT COUNT(BNUM) FROM BOARDTABLE
+	</select>
+	<select id="listPaging" resultType="board">
+	SELECT * FROM (SELECT B.*, ROW_NUMBER() OVER(ORDER BY BNUM DESC)
+			AS RN FROM BOARDTABLE B) WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
  </mapper>

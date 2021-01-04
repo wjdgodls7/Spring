@@ -32,6 +32,10 @@ body {
             <td>${list.btitle}</td>
          </tr>
          <tr>
+            <td>첨부파일</td>
+            <td><img src="resources/uploadFile/${list.bfilename}"></td>
+         </tr>
+         <tr>
             <td>작성자</td>
             <td>${list.bwriter}</td>
          </tr>
@@ -46,20 +50,25 @@ body {
          <tr>
             <td colspan="2" style="padding: 0"><textarea rows="15" cols="40" style="resize: none;" name="bcontents">${list.bcontents}</textarea></td>
          </tr>
-
       </table>
    </form>
+   <button onclick="boardlist()">목록</button>
+   <button onclick="boardupdate()">수정</button>
+   <button onclick="boarddelete()">삭제</button>
    <a href="./">홈으로가기</a>
 </body>
+<script>
+function boardlist(){
+	location.href="boardlist?page="+${page};
+}
+function boardupdate(){
+	location.href="boardupdate?bnum="+${list.bnum};
+}
+function boarddelete(){
+	location.href="boarddelete?bnum="+${list.bnum};
+}
+</script>
 </html>
-
-
-
-
-
-
-
-
 
 
 

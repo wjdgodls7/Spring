@@ -21,7 +21,7 @@ body {
 }
 </style>
 <body>
-   <form action="board-write" method="post">
+   <form action="board-write" method="post" enctype="multipart/form-data">
       <table>
          <tr>
             <td>제목</td>
@@ -42,6 +42,7 @@ body {
             <td colspan="2">
                <button style="width: 100px; height: 40px">글 작성</button>
             </td>
+            <td><input type="file" name="bfile"></td>
          </tr>
       </table>
    </form>

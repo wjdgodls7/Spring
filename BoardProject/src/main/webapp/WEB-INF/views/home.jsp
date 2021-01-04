@@ -7,5 +7,6 @@
 	<a href="boardwrite">글쓰기</a>
 	<br />
 	<a href="boardlist">글 목록</a>
+	
 </body>
 </html>
