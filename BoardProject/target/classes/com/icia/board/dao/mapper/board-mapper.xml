@@ -24,9 +24,23 @@
 	<select id="boardlist" resultType="int">
 	SELECT COUNT(BNUM) FROM BOARDTABLE
 	</select>
+	
 	<select id="listPaging" resultType="board">
 	SELECT * FROM (SELECT B.*, ROW_NUMBER() OVER(ORDER BY BNUM DESC)
 			AS RN FROM BOARDTABLE B) WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
-	
+	<select id="boardSerch" parameterType="java.util.HashMap" resultType="board">
+	SELECT * FROM BOARDTABLE
+	<include refid="serch"></include>
+	</select>
+	<sql id="serch">
+	<choose>
+		<when test="type == 'serchtitle'">
+		WHERE BTITLE LIKE '%'||#{word}||'%'
+		</when>
+		<when test="type == 'serchwriter'">
+		WHERE BWRITER LIKE '%'||#{word}||'%'
+		</when>
+	</choose>
+	</sql>
  </mapper>

@@ -21,7 +21,7 @@ public class HomeController {
 	ModelAndView mav;
 	@Autowired
 	private BoardService boardservice;
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		return "home";
@@ -37,18 +37,18 @@ public class HomeController {
 
 		return mav;
 	}
-//	@RequestMapping(value="/boardlist")
-//	public ModelAndView boardlistform() {
-//		mav = boardservice.boardlistform();
-//		return mav;
-//	}
+	//	@RequestMapping(value="/boardlist")
+	//	public ModelAndView boardlistform() {
+	//		mav = boardservice.boardlistform();
+	//		return mav;
+	//	}
 	@RequestMapping(value="/boarddetail")
 	public ModelAndView boarddetail(@ModelAttribute BoardDTO bnum, @RequestParam(value="page", required=false, defaultValue="1") int page) {
 		mav = boardservice.boarddtail(bnum,page);
 		System.out.println(bnum.getBfilename());
 		return mav;
 	}
-	
+
 	@RequestMapping(value="/boardupdate")
 	public ModelAndView boardupdate(@RequestParam("bnum") int bnum) {
 		mav.addObject("bnum", bnum);
@@ -60,8 +60,8 @@ public class HomeController {
 		mav = boardservice.boardupdateform(dto);
 		return mav;
 	}
-	
-	
+
+
 	@RequestMapping(value="/boarddelete")
 	public ModelAndView boarddelete(@RequestParam("bnum") int bnum) {
 		System.out.println(bnum);
@@ -73,5 +73,14 @@ public class HomeController {
 	public ModelAndView boardListPage(@RequestParam(value="page", required=false, defaultValue="1") int page) {
 		mav = boardservice.boardpaging(page);
 		return mav;
+	}
+
+	@RequestMapping(value="/boardserch")
+	public ModelAndView boardSerch(@RequestParam("serchtype") String serchtype,
+			@RequestParam("keyword") String keyword,
+			@RequestParam(value="page", required=false, defaultValue="1") int page) {
+		mav = boardservice.boardSerch(serchtype,keyword,page);
+		return mav;
+
 	}
 }

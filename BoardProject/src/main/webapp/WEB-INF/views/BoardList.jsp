@@ -20,7 +20,22 @@ body {
 }
 </style>
 </head>
+<script>
+function boardSerch(){
+	serchform.submit();
+}
+</script>
 <body>
+
+	<form action="boardserch" method="Get" name="serchform">
+		<select name="serchtype">
+			<option value="serchtitle">제목</option>
+			<option value="serchwriter">작성자</option>
+		</select>	
+		<input type="text" name="keyword" placeholder="검색...">
+		<input type="button" onclick="boardSerch()" value="검색">
+	</form>
+
    <table>
       <colgroup>
          <col width="100px">
@@ -28,7 +43,6 @@ body {
          <col width="100px">
          <col width="100px">
       </colgroup>
-
       <tr>
          <td>글번호</td>
          <td>제목</td>

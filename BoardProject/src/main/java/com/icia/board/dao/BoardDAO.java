@@ -1,6 +1,8 @@
 package com.icia.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,14 @@ public class BoardDAO {
 
 	public List<BoardDTO> listPaging(PageDTO pdto) {
 		return sql.selectList("Board.listPaging", pdto);
+	}
+
+	public List<BoardDTO> boardSerch(String serchtype, String keyword) {
+		Map<String, String> serchMap = new HashMap<String, String>();
+		//Map<key,value>의 타입을 적어주는것임
+		serchMap.put("type", serchtype);
+		serchMap.put("word", keyword);
+		return sql.selectList("Board.boardSerch", serchMap);
 	}
 
 }
