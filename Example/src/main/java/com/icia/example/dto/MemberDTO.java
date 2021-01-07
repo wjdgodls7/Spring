@@ -12,7 +12,6 @@ public class MemberDTO {
 	private String mphone;
 	private String memail;
 	private String mbirth;
-	private MultipartFile mfile;
-	private String mfilename;
+	private String madd;
 	
 }

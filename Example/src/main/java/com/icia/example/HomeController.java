@@ -43,8 +43,10 @@ public class HomeController {
 		return es.idoverlap(mid);
 	}
 
-
+	@RequestMapping(value="login")
+	public String loginform() {
+		return "LogIn";
+	}
 
 
 }
-

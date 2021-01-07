@@ -21,13 +21,6 @@ public class ExampleService {
 	
 	public ModelAndView memberjoin(MemberDTO mdto) throws IllegalStateException, IOException {
 		mav = new ModelAndView();
-		MultipartFile mfile = mdto.getMfile();
-		String mfilename = mfile.getOriginalFilename();
-		String filepath = "C:\\Users\\GG\\Documents\\Spring\\Example\\src\\main\\webapp\\resources\\profile\\" + mfilename;
-		if (!mfile.isEmpty()) {
-			mfile.transferTo(new File(filepath));
-		}
-		mdto.setMfilename(mfilename);
 		int result = dao.memberjoin(mdto);
 		if (result>0) {
 			mav.setViewName("home");

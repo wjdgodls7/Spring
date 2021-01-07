@@ -4,7 +4,7 @@
  
  <mapper namespace="Member">
 	<insert id="memberjoin" parameterType="member">
-	INSERT INTO SPRING_MEMBER VALUES(#{mid},#{mpwd},#{mname},#{mphone},#{memail},#{mbirth},#{mfilename})
+	INSERT INTO SPRING_MEMBER VALUES(#{mid},#{mpwd},#{mname},#{mphone},#{memail},#{mbirth},#{madd})
 	</insert>
 	<select id="idoverlap" parameterType="String" resultType="int">
 	SELECT COUNT(*) FROM SPRING_MEMBER WHERE MID=#{mid}
